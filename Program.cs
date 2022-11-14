@@ -1,13 +1,14 @@
 ﻿//Напишите программу, которая заполнит спирально массив 4 на 4.
 
-int length = 4;
+Console.WriteLine("Введите размерность");
+int length = int.Parse(Console.ReadLine()!);
 int[,] array = new int[length, length];
-int num = 1;
+int number = 1;
 int i = 0;
 int j = 0;
-while (num <= length * length)
+while (number <= length * length)
 {
-    array[i, j] = num;
+    array[i, j] = number;
     if (i <= j + 1 && i + j < length - 1)
         j++;
     else if (i < j && i + j >= length - 1)
@@ -16,9 +17,8 @@ while (num <= length * length)
         j--;
     else
         i--;
-    num++;
+    number++;
 }
-
 void PrintArray(int[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
@@ -35,4 +35,4 @@ void PrintArray(int[,] array)
         Console.WriteLine();
     }
 }
-PrintArray(nums);
+PrintArray(array);
