@@ -1,48 +1,38 @@
-﻿
+﻿//Напишите программу, которая заполнит спирально массив 4 на 4.
 
-int[,] matrix = InitMatrix(4, 4);
-int GetNumber(string message)
-
+int length = 4;
+int[,] array = new int[length, length];
+int num = 1;
+int i = 0;
+int j = 0;
+while (num <= length * length)
 {
-
-    Console.WriteLine(message);
-    int number = int.Parse(Console.ReadLine()!);
-    return number;
+    array[i, j] = num;
+    if (i <= j + 1 && i + j < length - 1)
+        j++;
+    else if (i < j && i + j >= length - 1)
+        i++;
+    else if (i >= j && i + j > length - 1)
+        j--;
+    else
+        i--;
+    num++;
 }
 
-int[,] InitMatrix(int m, int n)
+void PrintArray(int[,] array)
 {
-    int[,] resultMatrix = new int[m, n];
-    Random rnd = new Random();
-
-    for (int i = 0; i < m; i++)
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < array.GetLength(1); j++)
         {
-            resultMatrix[i, j] = rnd.Next(0, 10);
-        }
-    }
-    return resultMatrix;
-}
-
-void PrintMatrix(int[,] matrix)
-{
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    {
-        for (int j = 0; j < matrix.GetLength(1); j++)
-        {
-            Console.Write($"{matrix[i, j]}      ");
+            if (array[i, j] < 10)
+            {
+                Console.Write("0" + array[i, j]);
+                Console.Write(" ");
+            }
+            else Console.Write(array[i, j] + " ");
         }
         Console.WriteLine();
     }
 }
-
-
-Console.WriteLine();
-PrintMatrix(matrix);
-Console.WriteLine();
-Console.WriteLine("- - - - - - - - -");
-Console.WriteLine();
-//SumMinRow(matrix);
-Console.WriteLine();
-
+PrintArray(nums);
